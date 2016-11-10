@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 奇怪的想法第二篇-Hsu预测悖论
+title: Hsu预测悖论
 categories: philosophy
 ---
 
