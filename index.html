@@ -16,7 +16,7 @@ layout: default
       <!--h1 class="title" style="text-align:center;font-style:normal;margin-bottom:6%">blog</h1-->
     <!--/header-->
     <table style="width:100%">
-      {% for post in site.posts %}
+      {% for post in paginator.posts %}
       <tr>
         <td style="width:25%;border:none;"><i class="icon-clock"></i> {{ post.date | date: "%b %d, %Y" }}</td>
         <td style="border:none;"><a class="post-link plain" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></td>
@@ -25,4 +25,21 @@ layout: default
     </table>
   </div>
   </article>
+
+  {% if paginator.total_pages > 1 %}
+  <div class="pagination">
+    {% if paginator.previous_page %}
+    <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}" class="button" >
+      <i class="fa fa-chevron-left"></i>
+      {{ site.theme_settings.str_prev }}
+    </a>
+    {% endif %}
+    {% if paginator.next_page %}
+    <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}" class="button" >
+      {{ site.theme_settings.str_next }}
+      <i class="fa fa-chevron-right"></i>
+    </a>
+    {% endif %}
+  </div>
+  {% endif %}
 </div>
