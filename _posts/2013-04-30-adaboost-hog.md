@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: post
 title: 基于HOG特征的Adaboost行人检测
 categories: machine-learning
 ---

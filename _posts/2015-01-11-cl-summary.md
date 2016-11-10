@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: post
 title: Computational Linguistics - A Summary
 categories: NLP
 ---

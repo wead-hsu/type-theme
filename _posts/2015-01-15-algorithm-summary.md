@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: post
 title: Algorithm Design - A Summary
 categories: algorithm-design
 ---

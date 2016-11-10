@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: post
 title: Linear Algebra and Its Application - A Summary
 sitetype: blog
 categories: mathematics
