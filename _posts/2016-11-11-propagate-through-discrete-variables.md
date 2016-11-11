@@ -4,7 +4,7 @@ title: Propagate through discrete variables
 categories: algorithm-design
 ---
 
-Many machine learning models involve discrete variables. For instance, the latent variable of generative models are sometimes discrete. And hard version of attention mechanism takes the hidden attention at each step as dscrete stochastic variable. In this case, the backpropagation is not directly applicable to the stochastic networks, which makes it very difficult to train such networks. This blog summarizes several methods to deal with the gradient propagation problem, from the straight-through estimator (2013) to Gumbel-softmax (2016).
+Many machine learning models involve discrete variables. For instance, the latent variable of generative models are sometimes discrete. And hard version of attention mechanism takes the hidden attention at each step as discrete stochastic variable. In this case, the backpropagation is not directly applicable to the stochastic networks, which makes it very difficult to train such networks. This blog summarizes several methods to deal with the gradient propagation problem, from the straight-through estimator (2013) to Gumbel-softmax (2016).
 
 Problem defination
 -------
