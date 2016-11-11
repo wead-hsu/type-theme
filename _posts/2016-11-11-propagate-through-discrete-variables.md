@@ -21,6 +21,7 @@ Likelihood-ratio estimator (also known as score-function based estimator or REIN
 $$E_{p_\theta(x)}f(x) \nabla_\theta \log p_\theta(x).$$
 
 However, it is well known that this method has a problem of high variance. Hence many variance reduction techniques are put forward.
+
   - **Baseline methods**
 	- **Centering the learning signal** was proposed in [NVIL](https://arxiv.org/pdf/1402.0030.pdf), which uses the moving averaging as the baseline, i.e., $$E_{p_\theta(x)}(f(x)-b) \nabla_\theta \log p_\theta(x).$$
 	- **Input-dependent baseline** was also used in [NVIL](https://arxiv.org/pdf/1402.0030.pdf), which substracts from the learning siginal a predicted reward, i.e., $$E_{p_\theta(x \mid x_0)}[f(x, x_0) -b-\phi(x_0)]\nabla_\theta \log p_\theta(x \mid x_0).$$
