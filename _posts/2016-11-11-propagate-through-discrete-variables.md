@@ -22,12 +22,12 @@ $$E_{p_\theta(x)}f(x) \nabla_\theta \log p_\theta(x).$$
 
 However, it is well known that this method has a problem of high variance. Hence many variance reduction techniques are put forward.
 
-  - **Baseline methods**
+- **Baseline methods**
 	- **Centering the learning signal** was proposed in [NVIL](https://arxiv.org/pdf/1402.0030.pdf), which uses the moving averaging as the baseline, i.e., $$E_{p_\theta(x)}(f(x)-b) \nabla_\theta \log p_\theta(x).$$
 	- **Input-dependent baseline** was also used in [NVIL](https://arxiv.org/pdf/1402.0030.pdf), which substracts from the learning siginal a predicted reward, i.e., $$E_{p_\theta(x \mid x_0)}[f(x, x_0) -b-\phi(x_0)]\nabla_\theta \log p_\theta(x \mid x_0).$$
 	- [**VIMCO**](https://arxiv.org/pdf/1602.06725.pdf) samples multiple instances and uses the mean of other samples $$b=1/m\sum_{j\ne i} f(x_j)$$ as the baseline.
-  - **Variance normalization** keeps track of the moving averaging of the signal variance $$v$$, and divides the learning signal by $$\max(1, \sqrt{v})$$. This does not correspond to a baseline, and is a type of adaptive gradient.
-  - **Baseline variant** is a method similar with baseline method. However, it substract from the loss function a term that will affect the expected gradient.
+- **Variance normalization** keeps track of the moving averaging of the signal variance $$v$$, and divides the learning signal by $$\max(1, \sqrt{v})$$. This does not correspond to a baseline, and is a type of adaptive gradient.
+- **Baseline variant** is a method similar with baseline method. However, it substract from the loss function a term that will affect the expected gradient.
 	- [**DARN**](https://arxiv.org/pdf/1310.8499.pdf) uses $$b=f(\hat{x}) + f'(\hat{x})(x-\hat{x})$$, where the baseline corresponds to the first-order Taylor approximation of $$f(x)$$ from $$f(\hat{x})$$. The solution depends on the shape of $$f$$. If $$f$$ is a linear function, any $$\hat{x}$$ can be used. If $$f$$ is a quadratic function, $$\hat{x}$$ has to be $$0.5$$ w.r.t. Bernoulli variables.
 	- [**MuProp**](https://arxiv.org/pdf/1511.05176.pdf) also models the baseline as a first-order Taylor expansion: $$b=f(\hat{x}) + f'(\hat{x})(x-\hat{x})$$ and $$\mu_b=f'(\hat{x})\nabla_\theta E_x[x]$$. To overcome backpropagation through discrete sampling, a mean-field approximation is used.
 
