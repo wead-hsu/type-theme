@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Propagate through discrete variables
+title: Propagate through Discrete Variables
 categories: algorithm-design
 ---
 
@@ -12,7 +12,7 @@ Consider a simple stochastic model with discrete random variable $$x$$ whose pro
 
 Straight-through estimator
 -------
-This method is proposed by [Bengio, 2013](https://arxiv.org/pdf/1308.3432.pdf). The idea behind straight-through estimator is to backpropagate through the thresholding function as if it were the identity function. When the stochastic variables are binary, the estimator is simply $$f'(s)$$, where $$s$$ is sampled by $$s=1_{z_i>p_\theta(x)},z\sim[0,1]$$. This estimator is biased but has a low variance.
+This method is proposed by [Bengio, 2013](https://arxiv.org/pdf/1308.3432.pdf). The idea behind straight-through estimator is to backpropagate through the thresholding function as if it were the identity function. When the stochastic variables are binary, the estimator is simply $$f(s)p'(s)$$, where $$s$$ is sampled by $$s=1_{z_i>p_\theta(x)},z\sim[0,1]$$. This estimator is biased but has a low variance. For more information, I direct you to [here](http://r2rt.com/binary-stochastic-neurons-in-tensorflow.html).
 
 Likelihood-ratio estimator
 -------
@@ -33,4 +33,4 @@ However, it is well known that this method has a problem of high variance. Hence
 
 Gumbel-softmax
 -------
-The Gumbel softmax was recently used in [Jang, 2016](https://arxiv.org/pdf/1611.01144.pdf) and [Maddison, 2016](https://arxiv.org/pdf/1611.00712.pdf) to propagate through discrete variables. It is a 'reparameterization trick' for the categorical distribution. More specifically, it is actually a re-parameterization trick for a distroin that we can smoothly deform into the categorical distribution. Refer to [Gumbel-softmax tutorial](http://blog.evjang.com/2016/11/tutorial-categorical-variational.html).
+The Gumbel softmax was recently used in [Jang, 2016](https://arxiv.org/pdf/1611.01144.pdf) and [Maddison, 2016](https://arxiv.org/pdf/1611.00712.pdf) to propagate through discrete variables. It is a 'reparameterization trick' for the categorical distribution. More specifically, it is actually a re-parameterization trick for a distribution that we can smoothly deform into the categorical distribution. Refer to [Gumbel-softmax tutorial](http://blog.evjang.com/2016/11/tutorial-categorical-variational.html).
