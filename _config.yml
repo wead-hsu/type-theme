@@ -5,7 +5,7 @@ url: "http://wead-hsu.github.io" # the base hostname & protocol for your site
 # THEME-SPECIFIC CONFIGURATION
 theme_settings:
   # Meta
-  title: Wead Hsu 
+  title: Wead Hsu
   avatar: me.png
   gravatar: # Email MD5 hash
   description: "A website with blog posts and pages of Wead Hsu (Weidi Xu)" # used by search engines
