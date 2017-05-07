@@ -1,12 +1,12 @@
 ---
 layout: post
-title: Effective way to optimize the softmax
+title: Efficient way to optimize the softmax
 categories: machine-learning
 ---
 
 Recent years have seen the big progress in making training neural network effecient.
 One research topic in practice is to reduce the complexity in optimizing the softmax logits.
-It is really important in natural language processing as the size of output vocabulary can be very large (usually > 10k).
+It is really important in natural language processing as the size of output vocabulary can be very large (usually > 10K).
 
 To calculate the objective function that is a function of output probability, we have to compute the logits (probability) of each words, even if only one words is required.
 For instance, when a cross entropy loss function is used in estimating the likelihood, only the probability of target word is required.
@@ -14,13 +14,13 @@ However, since calculating the probabity needs to sum over all the logits for th
 
 $$ p(w_i) = \frac{\exp(l_i)}{\sum_j \exp(l_j)} ,$$
 
-$$ CE(p, t) = \log \prod_j {p(w_j)^{(t=j)}}{(1-p(w_j))^{(t\ne j)}} ,$$
+$$ C(p, t) = \log p(w_t) ,$$
 
 where the $$l_j$$ is the logit of $$j$$th word.
 
 If we need to estimate the likelihood of a sentence, we have to compute the logits for each word at each timestep, which will be very computationally expensive.
 
-Therefore, there are several techniques proposed to remedy this problem.
+Therefore, several techniques are proposed to remedy this problem.
 The most famous algorithm maybe the Sampled Softmax algorithm, which is introduced in the [Tensorflow webpage](https://www.tensorflow.org/tutorials/seq2seq).
 In my own experiments, if the sampled softmax is used, the runtime in a single batch will be greatly decreased from 1s per batch to 0.2s per batch.
 This is indeed very effecient if the size of vocabulary is larger than 10K.
@@ -31,8 +31,9 @@ The idea of Sampled softmax is to reduce the computation complexity by only samp
 The logits that are not sampled will remain unknown.
 Therefore the partition function $$\sum_j \exp(l_j)$$ can not be inferred.
 Instead of computing the exact probability, sampled softmax turns to another objective.
-Note that we actually know which logits are sampled, and which word is the target (This explanation is from the [Tensorflow manuscipt](https://www.tensorflow.org/extras/candidate_sampling.pdf), the paper explain more directly).
+Note that we actually know which logits are sampled, and which word is the target 
 We can compute the posterior probability for each logit indicating whether it itself is the target word.
+(This explanation is from the [Tensorflow manuscipt](https://www.tensorflow.org/extras/candidate_sampling.pdf), the paper explains more directly).
 Formally, when $$|L|$$ words are sampled from another distribution $$Q$$, the target word is $$t$$, we combine $$L$$ and $$t$$ as $$C=L + {t}$$ and select one term $$y$$ from the pool, the posterior probabilty that this term is the true target is:
 $$ p(t=y|C) = \frac{\exp(l_y)}{Q(y)} /K(C), $$
 where the $$l_y$$ is the desired logit of $$y$$ and $$K(C)$$ is a term that is not relative to $$y$$.
@@ -59,7 +60,10 @@ $$ = \sum_{w_i\sim Q} [R_i - \sum_k R_k q(w_k)] $$
 
 $$ = \sum_{w_i \sim Q} \frac{\sigma_j}{\sum_{j\in Q} \sigma_j} [R_i - \sum_k R_k q(w_k)] $$
 
-$$ = \sum_{w_i \sim Q} \frac{\sigma_j}{\sum_{j\in Q} \sigma_j} [R_i - \frac{\sigma_j}{\sum_{j\in Q} \sigma_j}  q(w_k)] $$
+$$ = \sum_{w_i \sim Q} \frac{\sigma_j}{\sum_{j\in Q} \sigma_j} [R_i - \frac{\sigma_j}{\sum_{j\in Q} \sigma_j}  R_k q(w_k)] $$
 
 where $$\sigma_i = \exp(l_i)/Q(w_i)$$.
-Here I used twice importance sampling to approximite.
+
+By using twice importance sampling to approximate, we do not have to compute all the logits to obtain the exact probability.
+I wonder there may be some papers talking about this method.
+Please let me know if you have any idea.
