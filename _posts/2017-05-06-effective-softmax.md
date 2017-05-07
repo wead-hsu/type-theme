@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Efficient way to optimize the softmax
+title: Efficient Way to Optimize the Softmax
 categories: machine-learning
 ---
 
@@ -54,13 +54,13 @@ $$ = \sum_i [q(w_i) R_i (\nabla l_i - \sum_k q(w_k) \nabla l_k)]$$
 
 $$ = \sum_i [q(w_i) R_i - \sum_k q(w_i) R_k q(w_k)] \nabla l_i $$
 
-$$ = \sum_i q(w_i) \nabla l_i [R_i - \sum_k R_k q(w_k)] $$
+$$ = \sum_i q(w_i) [R_i - \sum_k R_k q(w_k)] \nabla l_i$$
 
-$$ = \sum_{w_i\sim Q} [R_i - \sum_k R_k q(w_k)] $$
+$$ = \sum_{w_i\sim Q} [R_i - \sum_k R_k q(w_k)] \nabla l_i$$
 
-$$ = \sum_{w_i \sim Q} \frac{\sigma_j}{\sum_{j\in Q} \sigma_j} [R_i - \sum_k R_k q(w_k)] $$
+$$ = \sum_{w_i \sim Q} \frac{\sigma_j}{\sum_{j\in Q} \sigma_j} [R_i - \sum_k R_k q(w_k)] \nabla l_i$$
 
-$$ = \sum_{w_i \sim Q} \frac{\sigma_j}{\sum_{j\in Q} \sigma_j} [R_i - \frac{\sigma_j}{\sum_{j\in Q} \sigma_j}  R_k q(w_k)] $$
+$$ = \sum_{w_i \sim Q} \frac{\sigma_j}{\sum_{j\in Q} \sigma_j} [R_i - \frac{\sigma_j}{\sum_{j\in Q} \sigma_j}  R_k q(w_k)] \nabla l_i$$
 
 where $$\sigma_i = \exp(l_i)/Q(w_i)$$.
 
