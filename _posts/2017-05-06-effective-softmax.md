@@ -8,7 +8,7 @@ Recent years have seen the big progress in making training neural network effeci
 One research topic in practice is to reduce the complexity in optimizing the softmax logits.
 It is really important in natural language processing as the size of output vocabulary can be very large (usually > 10K).
 
-To calculate the objective function that is a function of output probability, we have to compute the logits (probability) of each words, even if only one words is required.
+To calculate the objective function that is a function of output probability, we have to compute the logits (probability) of each words, even if only one word is required.
 For instance, when a cross entropy loss function is used in estimating the likelihood, only the probability of target word is required.
 However, since calculating the probabity needs to sum over all the logits for the partition function, all logits should be computed simultaneously.
 
@@ -18,7 +18,7 @@ $$ C(p, t) = \log p(w_t) ,$$
 
 where the $$l_j$$ is the logit of $$j$$th word.
 
-If we need to estimate the likelihood of a sentence, we have to compute the logits for each word at each timestep, which will be very computationally expensive.
+To estimate the likelihood of a sentence, we have to compute the logits for each word at each timestep, which will be very computationally expensive.
 
 Therefore, several techniques are proposed to remedy this problem.
 The most famous algorithm maybe the Sampled Softmax algorithm, which is introduced in the [Tensorflow webpage](https://www.tensorflow.org/tutorials/seq2seq).
