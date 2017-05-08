@@ -57,9 +57,9 @@ $$ = \sum_i q(w_i) [R_i - \sum_k R_k q(w_k)] \nabla l_i$$
 
 $$ = \sum_{w_i\sim q} [R_i - \sum_k R_k q(w_k)] \nabla l_i$$
 
-$$ = \sum_{w_i \sim q} \frac{\sigma_j}{\sum_{j\in Q} \sigma_j} [R_i - \sum_k R_k q(w_k)] \nabla l_i$$
+$$ = \sum_{w_i \sim q} \frac{\sigma_j}{\sum_{j\in q} \sigma_j} [R_i - \sum_k R_k q(w_k)] \nabla l_i$$
 
-$$ = \sum_{w_i \sim q} \frac{\sigma_j}{\sum_{j\in Q} \sigma_j} [R_i - \frac{\sigma_j}{\sum_{j\in Q} \sigma_j}  R_k q(w_k)] \nabla l_i$$
+$$ = \sum_{w_i \sim q} \frac{\sigma_j}{\sum_{j\in q} \sigma_j} [R_i - \frac{\sigma_j}{\sum_{j\in q} \sigma_j}  R_k q(w_k)] \nabla l_i$$
 
 where $$\sigma_i = \exp(l_i)/q(w_i)$$.
 
