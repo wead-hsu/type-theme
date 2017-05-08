@@ -1,7 +1,8 @@
 ---
 layout: post
 title: Efficient Way to Optimize the Softmax
-categories: machine-learning ---
+categories: machine-learning 
+---
 
 Recent years have seen the big progress in making training neural network effecient.
 One research topic in practice is to reduce the complexity in optimizing the softmax logits.
