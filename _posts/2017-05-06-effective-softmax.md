@@ -1,8 +1,7 @@
 ---
 layout: post
 title: Efficient Way to Optimize the Softmax
-categories: machine-learning
----
+categories: machine-learning ---
 
 Recent years have seen the big progress in making training neural network effecient.
 One research topic in practice is to reduce the complexity in optimizing the softmax logits.
@@ -56,13 +55,13 @@ $$ = \sum_i [q(w_i) R_i - \sum_k q(w_i) R_k q(w_k)] \nabla l_i $$
 
 $$ = \sum_i q(w_i) [R_i - \sum_k R_k q(w_k)] \nabla l_i$$
 
-$$ = \sum_{w_i\sim Q} [R_i - \sum_k R_k q(w_k)] \nabla l_i$$
+$$ = \sum_{w_i\sim q} [R_i - \sum_k R_k q(w_k)] \nabla l_i$$
 
-$$ = \sum_{w_i \sim Q} \frac{\sigma_j}{\sum_{j\in Q} \sigma_j} [R_i - \sum_k R_k q(w_k)] \nabla l_i$$
+$$ = \sum_{w_i \sim q} \frac{\sigma_j}{\sum_{j\in Q} \sigma_j} [R_i - \sum_k R_k q(w_k)] \nabla l_i$$
 
-$$ = \sum_{w_i \sim Q} \frac{\sigma_j}{\sum_{j\in Q} \sigma_j} [R_i - \frac{\sigma_j}{\sum_{j\in Q} \sigma_j}  R_k q(w_k)] \nabla l_i$$
+$$ = \sum_{w_i \sim q} \frac{\sigma_j}{\sum_{j\in Q} \sigma_j} [R_i - \frac{\sigma_j}{\sum_{j\in Q} \sigma_j}  R_k q(w_k)] \nabla l_i$$
 
-where $$\sigma_i = \exp(l_i)/Q(w_i)$$.
+where $$\sigma_i = \exp(l_i)/q(w_i)$$.
 
 By using twice importance sampling to approximate, we do not have to compute all the logits to obtain the exact probability.
 I wonder there may be some papers talking about this method.
