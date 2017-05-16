@@ -41,7 +41,7 @@ where the $$l_y$$ is the desired logit of $$y$$ and $$K(C)$$ is a term that is n
 This method is much similar with [Noise Contrastive Estimation](http://proceedings.mlr.press/v9/gutmann10a/gutmann10a.pdf) (NCE).
 NCE differs sampled softmax in allowing mutiple $$y$$s.
 
-In recent days, I encounter with a similar question. In this problem, the objective function is replaced by a Reinforce-Learning like function:
+In recent days, I encounter with a similar problem. In this problem, the objective function is replaced by a REINFORCE-Learning like function:
 $$ L = \sum_j p(w_j) R_j ,$$
 where $$R_j$$ is the given reward for predicting $$w_j$$.
 And computing $$p(w_j)$$ will be very difficult since each logit is obtained via a matching model.
